@@ -47,26 +47,6 @@ app.post('/verify-payment', async (req, res) => {
     }
 });
 
-// Webhook để cập nhật trạng thái thanh toán (quan trọng)
-app.post('/receive-hook', (req, res) => {
-    try {
-        const isValid = payos.verifyWebhookData(req.body);
-        if (!isValid) return res.sendStatus(400);
-
-        const data = req.body.data;
-        console.log("📦 Webhook received:", data);
-
-        if (data.code === "00") {
-            console.log(`✅ Order ${data.orderCode} was paid`);
-            // TODO: cập nhật DB orderCode thành "PAID"
-        }
-        res.sendStatus(200);
-    } catch (e) {
-        console.error("Webhook error:", e);
-        res.sendStatus(500);
-    }
-});
-
 app.listen(3000, () => {
     console.log("🚀 Server is running at http://localhost:3000");
 });

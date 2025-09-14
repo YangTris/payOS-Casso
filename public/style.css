@@ -6,60 +6,78 @@
   font-family: Arial, sans-serif;
 }
 
-/* Center page */
+/* Page background */
 body {
   display: flex;
   justify-content: center;
   align-items: center;
   height: 100vh;
-  background: #f6f7fb;
+  background: #f5f7fa;
   color: #333;
 }
 
-/* Shared Card */
-.result-card {
+/* Product Card */
+.product-card {
   background: #fff;
   border-radius: 16px;
   box-shadow: 0 6px 12px rgba(0,0,0,0.1);
-  padding: 30px;
+  padding: 32px 24px;
   width: 350px;
   text-align: center;
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
 }
 
-.result-card h1 {
-  font-size: 1.8rem;
-  margin-bottom: 12px;
+.product-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 18px rgba(0,0,0,0.12);
 }
 
-.result-card p {
-  font-size: 1rem;
+/* Image */
+.product-img {
+  width: 100%;
+  border-radius: 12px;
   margin-bottom: 20px;
-  color: #555;
+  object-fit: cover;
 }
 
-/* Success and Cancel variations */
-.result-card.success h1 {
-  color: #27ae60; /* Green */
-}
-
-.result-card.cancel h1 {
-  color: #e74c3c; /* Red */
-}
-
-/* Buttons */
-.back-btn,
-.download-btn {
-  display: inline-block;
-  padding: 12px 20px;
-  background: #3498db;
-  color: #fff;
+/* Title */
+.product-title {
+  font-size: 1.6rem;
   font-weight: bold;
-  border-radius: 8px;
-  text-decoration: none;
-  transition: background 0.3s ease;
+  margin-bottom: 10px;
+  color: #2c7a7b; /* matches success/cancel heading color */
 }
 
-.back-btn:hover,
-.download-btn:hover {
-  background: #2980b9;
+/* Description */
+.product-desc {
+  font-size: 1rem;
+  color: #555;
+  margin-bottom: 16px;
+  line-height: 1.4;
+}
+
+/* Price */
+.product-price {
+  font-size: 1.3rem;
+  font-weight: bold;
+  color: #27ae60;
+  margin-bottom: 24px;
+}
+
+/* Pay Button */
+.pay-btn {
+  background: #2c7a7b;
+  color: #fff;
+  border: none;
+  padding: 12px 20px;
+  border-radius: 8px;
+  font-size: 1rem;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background 0.3s, transform 0.2s;
+}
+
+.pay-btn:hover {
+  background: #285e61;
+  transform: scale(1.05);
 }
