@@ -12,7 +12,7 @@ const payos = new PayOS({
     checksumKey: process.env.CHECKSUM_KEY,
 });
 
-const Your_Domain = 'http://localhost:3000';
+const Your_Domain = process.env.DOMAIN || 'http://localhost:3000';
 
 app.post('/create-payment-link', async (req, res) => {
     const orderCode = Date.now();
