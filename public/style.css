@@ -1,0 +1,65 @@
+/* Reset */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: Arial, sans-serif;
+}
+
+/* Center page */
+body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background: #f6f7fb;
+  color: #333;
+}
+
+/* Shared Card */
+.result-card {
+  background: #fff;
+  border-radius: 16px;
+  box-shadow: 0 6px 12px rgba(0,0,0,0.1);
+  padding: 30px;
+  width: 350px;
+  text-align: center;
+}
+
+.result-card h1 {
+  font-size: 1.8rem;
+  margin-bottom: 12px;
+}
+
+.result-card p {
+  font-size: 1rem;
+  margin-bottom: 20px;
+  color: #555;
+}
+
+/* Success and Cancel variations */
+.result-card.success h1 {
+  color: #27ae60; /* Green */
+}
+
+.result-card.cancel h1 {
+  color: #e74c3c; /* Red */
+}
+
+/* Buttons */
+.back-btn,
+.download-btn {
+  display: inline-block;
+  padding: 12px 20px;
+  background: #3498db;
+  color: #fff;
+  font-weight: bold;
+  border-radius: 8px;
+  text-decoration: none;
+  transition: background 0.3s ease;
+}
+
+.back-btn:hover,
+.download-btn:hover {
+  background: #2980b9;
+}

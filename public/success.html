@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Payment Success</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="result-card success">
+    <h1>🎉 Payment Successful</h1>
+    <p id="status">Verifying your payment...</p>
+    <div id="download"></div>
+  </div>
+
+  <script>
+    const params = new URLSearchParams(window.location.search);
+    const orderCode = params.get("orderCode");
+    const statusParam = params.get("status");
+
+    if (statusParam === "PAID") {
+      // ✅ Payment confirmed by PayOS redirect
+      document.getElementById("status").innerText = "Your payment has been confirmed ✅";
+      document.getElementById("download").innerHTML =
+        `<a class="download-btn" href="https://drive.google.com/file/d/1DaoW9CH7ri29mHZ5Qtxl6uMo-wH3X4ol/view" target="_blank">📥 Download your Ebook</a>`;
+    } else {
+      // 🔄 Double-check via API
+      fetch("/verify-payment", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ orderCode })
+      })
+      .then(res => res.json())
+      .then(data => {
+        if (data.status === "PAID") {
+          document.getElementById("status").innerText = "Your payment has been confirmed ✅";
+          document.getElementById("download").innerHTML =
+            `<a class="download-btn" href="${data.downloadUrl}" target="_blank">📥 Download your Ebook</a>`;
+        } else {
+          document.getElementById("status").innerText = "Payment not completed ❌";
+        }
+      })
+      .catch(() => {
+        document.getElementById("status").innerText = "Server error while verifying payment.";
+      });
+    }
+  </script>
+</body>
+</html>
